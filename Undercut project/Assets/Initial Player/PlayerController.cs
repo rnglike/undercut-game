@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
     private Rigidbody2D rb;
     private bool facingRight = true;
+    private bool playerMovementLock = false;
 
 
     // Variables of ground check
@@ -43,8 +44,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Horizontal movimentation
-        moveInput = Input.GetAxis("Horizontal"); // Raw? (no aceleration)
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        if (playerMovementLock == false)
+        {
+            moveInput = Input.GetAxis("Horizontal"); // Raw? (no aceleration)
+            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        }
 
 
         // Flip control
@@ -80,30 +84,45 @@ public class PlayerController : MonoBehaviour
         // For call jump anim while the player is just falling
         playerAnimator.SetFloat("AirSpeed", rb.velocity.y);
 
-        if (Input.GetKeyDown("space") && extraJumps > 0)
+        if (Input.GetKeyDown("space") && extraJumps > 0 && playerMovementLock == false)
         {
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
             playerAnimator.SetTrigger("Jump");
             playerAnimator.SetBool("Grounded", isGrounded);
         }
-        else if (Mathf.Abs(moveInput) > Mathf.Epsilon)
+        // Running animation
+        else if (Mathf.Abs(moveInput) > Mathf.Epsilon && playerMovementLock == false)
         {
             playerAnimator.SetInteger("AnimState", 2);
         }
+        // IDLE animation
         else
         {
             playerAnimator.SetInteger("AnimState", 0);
+        }
+
+        // Test block
+        if (Input.GetKeyDown("p"))
+        {
+            LockThePlayer();
         }
     }
 
 
     // Flip the game object
-    void Flip()
+    private void Flip()
     {
         facingRight = !facingRight;
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
+    }
+
+    // Lock the player momentation
+    public void LockThePlayer()
+    {
+        playerMovementLock = !playerMovementLock;
+        rb.velocity = new Vector2(0, rb.velocity.y);
     }
 }

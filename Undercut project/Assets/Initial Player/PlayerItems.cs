@@ -10,16 +10,21 @@ public class PlayerItems : MonoBehaviour
     public int howManyHairs = 10;
     public int howManyWeapons = 10;
 
+    // Item drop game object
+    public GameObject dropper;
+
 
     void Update()
     {
         // Drop the items
-        if (Input.GetKey("n"))
+        if (Input.GetKey("n") && weaponCode > 0)
         {
+            dropper.GetComponent<ItemDrop>().Dropper(weaponCode, false);
             SetWeaponCode(0);
         }
-        if (Input.GetKey("b"))
+        if (Input.GetKey("b") && hairCode > 0)
         {
+            dropper.GetComponent<ItemDrop>().Dropper(hairCode, true);
             SetHairCode(0);
         }
     }
