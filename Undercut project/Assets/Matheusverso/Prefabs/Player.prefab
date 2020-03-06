@@ -83,10 +83,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb92d21b80187834b8aca69bee37110f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 5
   jumpForce: 9
   groundCheck: {fileID: 5955213300984367095}
-  checkRadius: 0.2
+  checkWidth: 1
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
@@ -111,6 +111,7 @@ MonoBehaviour:
     m_Bits: 512
   attackRangeX: 0.61
   attackRangeY: 0.71
+  attackDelay: 0.5
 --- !u!114 &5955213300856968170
 MonoBehaviour:
   m_ObjectHideFlags: 0

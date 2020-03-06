@@ -16,6 +16,9 @@ public class PlayerAttack : MonoBehaviour
     public float attackRangeX;
     public float attackRangeY;
 
+    // Attack animation delay
+    public float attackDelay;
+
     //Player lock
     private bool playerLock;
 
@@ -39,15 +42,10 @@ public class PlayerAttack : MonoBehaviour
         // Attack !
         if (Input.GetKey("k") && timeBtwAttack <= 0 && playerLock == false)
         {
-            // Maybe put an delay, if necessary
-            timeBtwAttack = defaultTimeBtwAttack;
-            Collider2D[] enemiesToHit = Physics2D.OverlapBoxAll(attackPosition.position, new Vector2(attackRangeX, attackRangeY), 0, whatIsEnemy);
-            for (int i = 0; i < enemiesToHit.Length; i++)
-            {
-                enemiesToHit[i].GetComponent<Enemy>().takeDamage(damage);
-            }
-            Debug.Log("Dealing tons of DAMAGE");
             playerAnimator.SetTrigger("Attack");
+            //Attack delay
+            StartCoroutine(Wait()); 
+
         } else 
         {
             timeBtwAttack = timeBtwAttack - Time.deltaTime;
@@ -60,5 +58,22 @@ public class PlayerAttack : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(attackPosition.position, new Vector3(attackRangeX, attackRangeY, 1));
+    }
+
+    // Delay function
+    IEnumerator Wait() {
+        yield return new WaitForSeconds (attackDelay);
+        Attack();
+    }
+
+    private void Attack() {
+        // Maybe put an delay, if necessary
+        timeBtwAttack = defaultTimeBtwAttack;
+        Collider2D[] enemiesToHit = Physics2D.OverlapBoxAll(attackPosition.position, new Vector2(attackRangeX, attackRangeY), 0, whatIsEnemy);
+        for (int i = 0; i < enemiesToHit.Length; i++)
+        {
+            enemiesToHit[i].GetComponent<Enemy>().takeDamage(damage);
+        }
+        Debug.Log("Dealing tons of DAMAGE");
     }
 }

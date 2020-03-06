@@ -25,8 +25,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -269,7 +271,7 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: 9502c8b84f38b9c400a47a3f6fd53b11
+      Hash: 2b67a1e10a795db61a1927897de55b16
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerAttack
@@ -425,7 +427,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 73e21663536549631e7d0ce1ba3c0b30
+      Hash: ec624917cc9fc4ef49fc242cad63824c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -582,4 +584,5 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Matheusverso/Scenes/SampleScene.unity
-  playerPath: E:/Projetos Byte/Undercut/Undercut builds/Semana 2/Undercut project.exe
+  playerPath: E:/Projetos Byte/Undercut/Undercut builds/Semana 2/v2/Windows/Undercut
+    project.exe

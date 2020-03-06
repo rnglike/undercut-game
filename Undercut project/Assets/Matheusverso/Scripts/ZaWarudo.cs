@@ -43,12 +43,12 @@ public class ZaWarudo : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return) && isTimeStopped == false && cooldown <= 0) {
                 StopTheTime();
             }
-            if (isTimeStopped == true) {
-                // Call freeze in each frame until duration be equals 0 or less
-                Freeze();
-                if (duration <= 0) {
-                    ReturnTheTime();
-                }
+        }
+        if (isTimeStopped == true) {
+            // Call freeze in each frame until duration be equals 0 or less
+            Freeze();
+            if (duration <= 0) {
+                ReturnTheTime();
             }
         }
 

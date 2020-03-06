@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     // Variables of ground check
     private bool isGrounded;
     public Transform groundCheck;
-    public float checkRadius;
+    public float checkWidth;
     public LayerMask whatIsGround;
 
 
@@ -62,7 +62,8 @@ public class PlayerController : MonoBehaviour
 
 
         // There is ground under the player?
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        //isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkWidth, whatIsGround);
+        isGrounded = Physics2D.OverlapBox(groundCheck.position, new Vector2(checkWidth, 0.1f), 0, whatIsGround);
     }
 
 
@@ -128,5 +129,12 @@ public class PlayerController : MonoBehaviour
 
     public bool getPlayerLock() {
         return playerMovementLock;
+    }
+
+    // Drawing ground check box
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(groundCheck.position, new Vector3(checkWidth, 0.1f, 1));
     }
 }
