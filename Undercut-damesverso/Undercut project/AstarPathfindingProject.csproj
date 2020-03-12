@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{E974D65E-853B-24F1-FFB8-8B63D2A405EA}</ProjectGuid>
+    <ProjectGuid>{803F810D-A607-5A65-162D-D646A09E6AB1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>AstarPathfindingProject</AssemblyName>
@@ -181,10 +181,10 @@
     <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
     <None Include="Assets\AstarPathfindingProject\Plugins\dependencies.txt" />
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>E:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/2019.3.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -376,7 +376,7 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>E:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/2019.3.1f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

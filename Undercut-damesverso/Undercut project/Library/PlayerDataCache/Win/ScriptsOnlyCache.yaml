@@ -3,13 +3,17 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Enemy
     - EnemyAI
+    - EnemyHealth
+    - ItemDrop
+    - PlayerAttack
+    - PlayerController
+    - PlayerItems
+    - Vid
     AstarPathfindingProject.dll:
     - AstarPath
     - Pathfinding.Seeker
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
-    - UnityEditor.Tilemaps.GridPaletteBrushes
-    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
     Unity.Rider.Editor.dll:
@@ -44,18 +48,40 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 61
       Script: {instanceID: 0}
+    - Class: 62
+      Script: {instanceID: 0}
+    - Class: 70
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 12012}
+      Script: {instanceID: 11808}
     - Class: 114
-      Script: {instanceID: 12044}
+      Script: {instanceID: 11932}
     - Class: 114
-      Script: {instanceID: 12816}
+      Script: {instanceID: 12018}
     - Class: 114
-      Script: {instanceID: 13314}
+      Script: {instanceID: 12050}
+    - Class: 114
+      Script: {instanceID: 12694}
+    - Class: 114
+      Script: {instanceID: 12832}
+    - Class: 114
+      Script: {instanceID: 12892}
+    - Class: 114
+      Script: {instanceID: 13332}
+    - Class: 114
+      Script: {instanceID: 13378}
+    - Class: 114
+      Script: {instanceID: 13392}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -115,6 +141,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: GroupTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 0279f6197a191724a45e70db2e8e68f6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LootBox
   - hash:
       serializedVersion: 2
       Hash: a5781dc71a671b1ad2b38de19f24b71f
@@ -255,6 +287,12 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
+      Hash: 2b67a1e10a795db61a1927897de55b16
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerAttack
+  - hash:
+      serializedVersion: 2
       Hash: 1d6bc7fb33fcc56237df7c329c31fac2
     assemblyName: AstarPathfindingProject.dll
     namespaceName: Pathfinding
@@ -297,6 +335,12 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: 4f9b07ebfa7cdc560b09e529c950ae27
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ItemDrop
+  - hash:
+      serializedVersion: 2
       Hash: 427e4ae6223362877cde7ac01baa97c3
     assemblyName: AstarPathfindingProject.dll
     namespaceName: Pathfinding
@@ -315,7 +359,7 @@ ScriptsOnlyBuild:
     className: TMP_Asset
   - hash:
       serializedVersion: 2
-      Hash: 00a979382bea310595698551723c75df
+      Hash: 2790fc55741fde0c43cd076875e64802
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyAI
@@ -325,6 +369,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: 308532aa19ca119019c7bbb71803da7d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ZaWarudo
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -459,10 +509,22 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
+      Hash: 23051a34bca2469fa14366c5b098e117
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerController
+  - hash:
+      serializedVersion: 2
       Hash: 66c061c17549c495f74c9dcc30aaaab2
     assemblyName: AstarPathfindingProject.dll
     namespaceName: Pathfinding.Examples
     className: MineBotAI
+  - hash:
+      serializedVersion: 2
+      Hash: a1bb9f72a2bc6cef6a33e0e3c0288deb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TheWorld
   - hash:
       serializedVersion: 2
       Hash: 8abe5c5970b933d28c84fe29c2232578
@@ -505,6 +567,12 @@ ScriptsOnlyBuild:
     assemblyName: AstarPathfindingProject.dll
     namespaceName: Pathfinding.Examples
     className: TurnBasedAI
+  - hash:
+      serializedVersion: 2
+      Hash: f0305a42381e542238e74c9c730abb3e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Vid
   - hash:
       serializedVersion: 2
       Hash: f336e086360abe49a3323e5f1583c35a
@@ -633,7 +701,7 @@ ScriptsOnlyBuild:
     className: TestRunCallbackListener
   - hash:
       serializedVersion: 2
-      Hash: bce83397aa8235fcb425548b18cfa7c3
+      Hash: d26877ac288b23b06be4870bb72e8e24
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Enemy
@@ -663,13 +731,19 @@ ScriptsOnlyBuild:
     className: Toggle
   - hash:
       serializedVersion: 2
+      Hash: faa05b045723b4ac127ddb149c78e0d0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerItems
+  - hash:
+      serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 8ce338c7f5a803a52add8a5370210aa6
+      Hash: b4c9787f422ba5d2e9b1fb9b3a65fa8b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyHealth
@@ -695,4 +769,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
   playerPath: C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA
-    Enemy/Undercut builds/IA Enemy.exe
+    Enemy/Undercut-damesverso/Undercut builds/Semana 2/IA Enemy.exe

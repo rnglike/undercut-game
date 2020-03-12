@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{AF795950-517F-4362-13C6-0777D16E82BD}</ProjectGuid>
+    <ProjectGuid>{D8BF71BE-4FD4-16C6-9BFD-479980FEB685}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -63,41 +63,51 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyAI.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyHealth.cs" />
+    <Compile Include="Assets\Damesverso\Scripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\Damesverso\Scripts\Enemy\EnemyAI.cs" />
+    <Compile Include="Assets\Damesverso\Scripts\Enemy\EnemyHealth.cs" />
+    <Compile Include="Assets\Matheusverso\Others\TheWorld.cs" />
+    <Compile Include="Assets\Matheusverso\Others\Vid.cs" />
+    <Compile Include="Assets\Matheusverso\Scripts\ItemDrop.cs" />
+    <Compile Include="Assets\Matheusverso\Scripts\LootBox.cs" />
+    <Compile Include="Assets\Matheusverso\Scripts\PlayerScripts\PlayerAttack.cs" />
+    <Compile Include="Assets\Matheusverso\Scripts\PlayerScripts\PlayerController.cs" />
+    <Compile Include="Assets\Matheusverso\Scripts\PlayerScripts\PlayerHealth.cs" />
+    <Compile Include="Assets\Matheusverso\Scripts\PlayerScripts\PlayerItems.cs" />
+    <Compile Include="Assets\Matheusverso\Scripts\PointInTime.cs" />
+    <Compile Include="Assets\Matheusverso\Scripts\ZaWarudo.cs" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>E:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/2019.3.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -277,7 +287,7 @@
       <HintPath>E:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/2019.3.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+      <HintPath>C:/Users/Mathura Dalmeida/Downloads/SteamWestCCG-master/SteamWestCCG-master/IA Enemy/Undercut-damesverso/Undercut project/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>E:/Program Files/Unity/Hub/Editor/2019.2.2f1/Editor/Data/2019.3.1f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -627,15 +637,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="AstarPathfindingProject.csproj">
-      <Project>{E974D65E-853B-24F1-FFB8-8B63D2A405EA}</Project>
+      <Project>{803F810D-A607-5A65-162D-D646A09E6AB1}</Project>
       <Name>AstarPathfindingProject</Name>
     </ProjectReference>
     <ProjectReference Include="PackageToolsEditor.csproj">
-      <Project>{5BF7F314-6357-A35E-43F7-6E7E4A96B0D5}</Project>
+      <Project>{491DA4D6-60CA-492B-609B-1A89007DE15F}</Project>
       <Name>PackageToolsEditor</Name>
     </ProjectReference>
     <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
-      <Project>{63711932-95AC-8454-CC8A-E0F157CB7DB2}</Project>
+      <Project>{C4AD45D3-BB89-EC7E-4AEB-513938A22AC1}</Project>
       <Name>AstarPathfindingProjectEditor</Name>
     </ProjectReference>
   </ItemGroup>
