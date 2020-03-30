@@ -7,6 +7,9 @@ public class EnemyHealth : MonoBehaviour
 
     public int enemyHealth;
 
+    private Transform player;
+    private Transform enemyTerrestre;
+
     // Stun no inimigo
     public float dazedTime;
     public float startDazedTime;
@@ -29,7 +32,8 @@ public class EnemyHealth : MonoBehaviour
         //animator = GetComponent<Animator>();  (será usado depois)
         //source = GetComponent<AudioSource>(); (será usado depois
         isDead = false;
-
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        enemyTerrestre = GameObject.FindGameObjectWithTag("Enemy Terrestre").GetComponent<Transform>();
         //takeDmg = takedmgObject.GetComponent<AudioSource>(); (será usado depois)
 
     }
@@ -66,10 +70,15 @@ public class EnemyHealth : MonoBehaviour
         }
         if (dazedTime > 0)
         {
-           
             transform.position = RespawnPoint;
             dazedTime -= Time.deltaTime;
 
+            // Solta o player do agarrão se ele acertar o alvo (TALVEZ NÃO SEJA NECESSÁRIO)
+            //if (gameObject.CompareTag("Enemy Terrestre"))
+            {
+                //player.GetComponent<PlayerController>().FreeThePlayer();
+                //player.GetComponent<PlayerController>().getPlayerLock();
+            }
         }
 
         

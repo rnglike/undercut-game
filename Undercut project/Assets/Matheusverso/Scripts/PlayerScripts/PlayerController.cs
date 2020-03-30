@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
-    // Tempo do jogador Travado
-    public float timeLocked;
+    // Tempo do jogador se libertar
     public float startFreeLockTime;
-    
-    
+
     // Movimentation variables
     public float speed;
     public float jumpForce;
@@ -18,6 +15,13 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = true;
     private bool playerMovementLock = false;
 
+    // Positioning Variables
+    public bool withBuilding;
+    public bool nextToDoor;
+    public float gSb;
+
+    // Variable of inside/outside check
+    public bool inside;
 
     // Variables of ground check
     private bool isGrounded;
@@ -33,9 +37,12 @@ public class PlayerController : MonoBehaviour
 
     // Animator variable
     private Animator playerAnimator;
+    
     // isGrounded is used here too
     private bool combateIdle = false;
     private bool isDead = false;
+
+    private Building building;
 
 
     void Awake()
@@ -44,6 +51,10 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         extraJumps = defaultJumps;
         playerAnimator = GetComponent<Animator>();
+        if(withBuilding)
+        {
+            building = GameObject.FindGameObjectWithTag("Building").GetComponent<Building>();
+        }
     }
 
     
@@ -75,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
+
         // Jump control
         if (isGrounded == true && rb.velocity.y < 0.5)
         {
@@ -109,15 +120,13 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetInteger("AnimState", 0);
         }
 
-        // Test block (NÃO PODE ESQUECER DE TIRAR ISSO)
-        if (Input.GetKeyDown("p"))
-        {
-
-            LockThePlayer();
-
-        }
-
+        // Test block
+        // if (Input.GetKeyDown("p"))
+        // {
+        //     LockThePlayer();
+        // }
     }
+
 
     // Flip the game object
     private void Flip()
@@ -148,16 +157,71 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireCube(groundCheck.position, new Vector3(checkWidth, 0.1f, 1));
     }
 
+    // Warps player to some place's Transform position.
+    public void WarpTo(Transform place,string withVelocity = "yes")
+    {
+        if(withVelocity == "no")
+        {
+            rb.velocity = new Vector2(0,0);   
+        }
+        transform.position = place.position;
+    }
 
-    // Comando que libera o jogador do Lock do inimigo, o tempo para se soltar é fixo pro jogador no momento, tendo que achar uma forma de executar esse comando no script do inimigo para não ser fixo.
+    public void SetSpeedY(float newSpeed)
+    {
+        rb.velocity = new Vector2(rb.velocity.x, newSpeed);
+    }
+
+    public void GetGravityControl(bool active)
+    {
+        if(rb.gravityScale != 0)
+        {
+            gSb = rb.gravityScale;
+        }
+        if(active)
+        {
+            rb.gravityScale = 0;
+        }
+        else
+        {
+            rb.gravityScale = gSb;
+        }
+    }
+
+    // Collision check (hopefully for all cases)
+    void OnTriggerStay2D(Collider2D any)
+    {
+        if((any.transform.parent.tag == "Doors"))
+        {
+            nextToDoor = true;
+
+            if(Input.GetButtonDown("Interact"))
+            {
+                building.DoorWarpTo(transform,any.transform);
+            }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D any)
+    {
+        nextToDoor = false;
+    }
+
+   
+   
+
+    public void FreeThePlayer()
+    {
+        //StartCoroutine(FreeThePlayerDelay());
+    }
+
+    // Comando que libera o jogador do Lock do inimigo
     IEnumerator FreeThePlayerDelay()
     {
         yield return new WaitForSeconds(startFreeLockTime);
-        FreeThePlayer();
+        playerMovementLock = false;
+        //FreeThePlayer();
     }
 
-    private void FreeThePlayer()
-    {
-        playerMovementLock = false;
-    }
+
 }

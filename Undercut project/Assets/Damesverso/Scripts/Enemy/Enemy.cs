@@ -4,28 +4,23 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    
-    // Inimigo segurar o jogador
-    public float InitialLockDistance;
-    public float lockDistance;
-    public float starttimeLocked;
-    public float freetimeLocked;
+    // Área de agarrão
+    public GameObject grabTrigger;
 
     // Velocidade do inimigo
     public float startSpeed;
-    public float speed;
+    private float speed;
 
     // Speed Boost do Inimigo (Não sei como fazer funcionar)
-    public bool speedboostActivated;
-    public int speedboostOn;
-    public int speedboostOff;
+    public bool isRunning;
     public float speedBoost;
     // ****Contador para o speed Boost, é nessa parte que da problema, ou o boosTime fica sempre igual ao startboostTime, ou ao chegar a zero volta para o valor do startBoost em um loop. nunca ficando negativo**** 
-    private float boostTime;
-    public float startboostTime;
+    public float boostTimeSet;
+    public float boostTime;
 
     // Campo de visão do inimigo
     public float distanceVision;
+    public float initialDistanceVision;
 
     public Transform enemyGFX;
     private Transform player;
@@ -41,9 +36,50 @@ public class Enemy : MonoBehaviour
         //anim.SetBool("isRunning", true); (será usado depois)
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
-        lockDistance = InitialLockDistance;
         speed = startSpeed;
+        boostTime = boostTimeSet;
+        distanceVision = initialDistanceVision;
+        
+    }
 
+    void Update()
+    {
+        // Enquanto tiver o boost de velocidade, a área de agarrão se ativa
+        if (boostTime > 0)
+        {
+
+        	if (isRunning)
+    		{
+            
+            	speed = startSpeed;
+                grabTrigger.SetActive(false);
+                player.GetComponent<PlayerController>().FreeThePlayer();
+
+            }
+            else
+            {
+
+            	speed = speedBoost;
+                grabTrigger.SetActive(true);
+                
+
+            }
+
+        }
+        else if (boostTime <= 0)
+        {
+
+            boostTime = boostTimeSet;
+            isRunning = !isRunning;
+
+        }
+
+        if(boostTime > 0)
+        {
+
+            boostTime--;
+
+        }
     }
 
     void FixedUpdate()
@@ -61,7 +97,7 @@ public class Enemy : MonoBehaviour
 
         }
 
-        // Como não animação, isso serve para ver para virar as sprites dependendo a direção do inimigo (direita ou esquerda).
+        // Como não animação, isso serve para ver para virar as sprites dependendo a direção do inimigo (direita ou esquerda). Aumenta ou diminue a sprite tambem, se a escala for diferente do base
         if (rb.velocity.x >= 0.01f)
         {
             
@@ -75,86 +111,15 @@ public class Enemy : MonoBehaviour
 
         }
 
-        // Pega a distância do Rigidbody do inimigo e o Transform do jogador, e compara com o alcance de agarrão do inimigo. Se positivo, ativa o Lock no Player assim como no cooldown.
-        if (Vector2.Distance(rb.position, player.position) <= lockDistance)
+    }
+
+    // Se o player estiver na área, trava ele
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
         {
-            
             player.GetComponent<PlayerController>().LockThePlayer();
-            StartCoroutine(Delay());
-
+            //distanceVision = 0;
         }
-
-
-        // Parte do código que acredito está correto para o boost do inimigo. Falta ajeitar o contador e o IEnumerator
-        if (speedboostActivated == true)
-        {
-            if (boostTime > 0)
-            {
-
-                speed = speedBoost;
-
-            }
-            
-        }
-
-
-        if (speedboostActivated == false)
-        {
-            if (boostTime <= 0)
-            {
-                
-                speed = startSpeed;
-
-            }
-        }
-
     }
-
-    // Controla o Lock do Player assim como o Unlock dele, meio desorganizado no momento, mas parece funcionar.
-    private void LockDelay ()
-    {
-
-        lockDistance = 0;
-        StartCoroutine(FreeDelay());
-
-    }
-
-    private void FreeLockDelay()
-    {
-        
-        lockDistance = InitialLockDistance;
-
-    }
-
-    IEnumerator Delay()
-    {
-        
-        yield return new WaitForSeconds(starttimeLocked);
-        LockDelay();
-
-    }
-
-    IEnumerator FreeDelay()
-    {
-        
-        yield return new WaitForSeconds(freetimeLocked);
-        FreeLockDelay();
-
-    }
-
-    // Serviria para ativar e desativar o Speed Boost do inimigo, com dificuldades para por funcionando
-    IEnumerator BoostEnemyOn()
-    {
-       
-        yield return new WaitForSeconds(speedboostOn);
-        
-    }
-
-    IEnumerator BoostEnemyOff()
-    {
-        
-        yield return new WaitForSeconds(speedboostOff);
-
-    }
-
 }

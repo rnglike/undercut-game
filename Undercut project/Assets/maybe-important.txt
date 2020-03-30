@@ -1,0 +1,19 @@
+THINGS THAT COULD NEED TO BE SET:
+
+- The "interact" input button:
+
+	Create a new input value in Project Settings > Input, name it "interact" and assign a key.
+
+- The Building Scripts:
+
+	CameraControl <-> GameObject Camera
+	Door <-> Prefab Door
+	Room <-> GameObject SpawnPoint
+	RoomController <-> GameObject Building
+
+- The non-Building (from Rangelverso) scripts:
+
+	CheatHelper <-> GameObject TheCheatHelper
+	Interface <-> GameObject UI (inside Canvas)
+
+--- EXPAND THIS LIST! (pls) ---

@@ -4,7 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Building
+  - Interface
+  - PlayerSpawns
+  - Room
+  - Doors
+  - FloorLimit
+  - Door
+  - CameraTarget
   - Enemy
+  - Enemy Terrestre
+  - CheckpointInimigo
+  - Period
   layers:
   - Default
   - TransparentFX
@@ -14,9 +25,9 @@ TagManager:
   - UI
   - 
   - 
-  - Paredes
+  - Ground
   - Enemy
-  - 
+  - Player
   - 
   - 
   - 
