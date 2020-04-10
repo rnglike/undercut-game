@@ -1,7 +1,0 @@
-﻿[13/3]	- Created this changelog system and the IMPORTANT.txt help guide.
-		- Also, all changes I assume you probably remember, that's just for the sake of the example.
-		- Btw, thanx for working great guys.
-
-[17/3]	- First Push to Master!!!
-		- Sugestion: Try to not change each others scripts or folder stuff. If you do, remember to tell us.
-		- Also, try to maitain a routine of write down the changes you in this file. I may help, not only us, later, but yourself!
