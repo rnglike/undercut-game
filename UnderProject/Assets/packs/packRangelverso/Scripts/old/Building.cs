@@ -16,7 +16,6 @@ public class Building : MonoBehaviour
         [HideInInspector] public int roomsSpawning;             //The being instantiated rooms counter.
         [HideInInspector] public int existingRooms;             //The instatiated rooms counter.
         public int currentRoom = 0;           //
-        [HideInInspector] public GameObject playerSpawn;		//
         [HideInInspector] public GameObject[] rooms;            //Array of all doors in the building (sorry1...).
         [HideInInspector] public GameObject[] doors;            //Array of all doors in the building (sorry2...).
         [HideInInspector] public GameObject[] floorLimits;      //Array of all borders between floors. (sorry3...).
@@ -34,7 +33,6 @@ public class Building : MonoBehaviour
     void Awake()
     {
         topRoom = GameObject.Find("TopRoom").GetComponent<Room>();
-        playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawns");
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         bombTimer = 20;
@@ -96,7 +94,6 @@ public class Building : MonoBehaviour
 
         existingRooms = 0;
 
-        player.WarpTo(playerSpawn.transform.GetChild(1),"no");
         player.inside = false;
 
         for (int room = 1; room < transform.childCount; room++)

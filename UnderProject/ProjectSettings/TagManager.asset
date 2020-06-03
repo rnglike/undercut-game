@@ -3,7 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Building
+  - Interface
+  - Period
+  - Room
+  - Bomb
+  - Doors
+  - FloorLimit
+  - Door
+  - acti
+  - Enemy Explosivo
+  - Enemy Terrestre
+  - CameraTarget
+  - entrance
+  - closed
+  - exit
+  - open
   layers:
   - Default
   - TransparentFX
@@ -13,7 +29,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Ground
   - 
   - 
   - 
