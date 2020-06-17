@@ -29,8 +29,6 @@ public class Room : MonoBehaviour
 	{
 		if(!made)
 		{
-			building.IncrementFloorMade();
-			
 			if(!building.IsDone)
 			{
 				Instantiate(building.level,place.position,Quaternion.identity,transform.parent);
@@ -39,8 +37,18 @@ public class Room : MonoBehaviour
 			{
 				Instantiate(building.levelEnd,place.position,Quaternion.identity,transform.parent);
 			}
+			
+			building.IncrementFloorMade();
 
 			made = true;
 		}
+	}
+
+	public Texture2D ChooseMap(Texture2D map)
+	{
+		Texture2D[] maps = building.maps;
+		int rand = Random.Range(0,maps.Length);
+
+		return maps[rand];
 	}
 }

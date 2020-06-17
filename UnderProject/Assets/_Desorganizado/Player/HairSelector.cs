@@ -24,6 +24,7 @@ public class HairSelector : MonoBehaviour
 
     private void hairShift(int aux) {
         hairs[hairCode].SetActive(false);
+
         hairs[aux].SetActive(true);
         hairCode = aux;
     }

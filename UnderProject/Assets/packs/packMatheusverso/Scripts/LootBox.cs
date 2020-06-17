@@ -31,7 +31,7 @@ public class LootBox : MonoBehaviour
         distanceUntilPlayer = distanceVector.magnitude;
 
         // Calling the method GiveItem
-        if (distanceUntilPlayer <= ActionRange && Input.GetKeyDown(KeyCode.DownArrow))
+        if (distanceUntilPlayer <= ActionRange)
         {
             Debug.Log("Getting item");
             GiveItem(item);

@@ -34,6 +34,8 @@ public class CameraOnPlayer : MonoBehaviour
     //Booleans
     public bool noBuilding;
 
+    public BuildingNew building;
+
     //-----------------------------------------------------------------------------
     //This solution only works if all floors are equally distant from each another.
     //-----------------------------------------------------------------------------
@@ -46,6 +48,8 @@ public class CameraOnPlayer : MonoBehaviour
 
     void FixedUpdate()
     {
+        floor = building.currentRoom;
+
         //Get Camera and Player positions
         Vector3 temp_cPos = cam.transform.position;
         Vector3 temp_pPos = player.transform.position;
@@ -108,7 +112,7 @@ public class CameraOnPlayer : MonoBehaviour
         Vector3 camPos = cam.transform.position;
 
         Gizmos.color = Color.green;
-        Gizmos.DrawCube(new Vector3(0,-floorDistance,0),new Vector3(1,1,0));
+        Gizmos.DrawCube(new Vector3(0,-floorDistance * floor,0),new Vector3(1,1,0));
 
         Gizmos.color = Color.white;
         Gizmos.DrawCube(new Vector3(sideEnclosure,camPos.y,camPos.z),new Vector3(1,1,0));

@@ -20,6 +20,10 @@ TagManager:
   - closed
   - exit
   - open
+  - groundTile
+  - doorTile
+  - upDoor
+  - downDoor
   layers:
   - Default
   - TransparentFX
@@ -30,8 +34,8 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
+  - Loot
+  - Player
   - 
   - 
   - 
@@ -56,4 +60,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Sky
+    uniqueID: 2967993093
+    locked: 0
+  - name: Level
+    uniqueID: 4135184627
+    locked: 0
+  - name: Player
+    uniqueID: 2399242165
+    locked: 0
+  - name: Shadow
+    uniqueID: 601198647
     locked: 0

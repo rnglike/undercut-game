@@ -217,20 +217,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Collision check (hopefully for all cases)
-    void OnTriggerStay2D(Collider2D any)
-    {
-        if(any.tag == "Door")
-        {
-            nextToDoor = true;
-
-            if(Input.GetButtonDown("Interact"))
-            {
-                building.DoorWarpTo(transform,any.transform);
-            }
-        }
-    }
-
     void OnTriggerExit2D(Collider2D any)
     {
         nextToDoor = false;

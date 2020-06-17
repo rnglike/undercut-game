@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerItems : MonoBehaviour
 {
@@ -55,6 +56,17 @@ public class PlayerItems : MonoBehaviour
             dropper.GetComponent<ItemDrop>().Dropper(hairCode, true);
             SetHairCode(0);
         }
+
+        //LEVEL EDITOR ONLY
+        foreach(char c in Input.inputString)
+        {
+            int numb = (int)((int)Char.GetNumericValue(c));
+
+            if((numb != -1) && (numb != 1) && (numb != 5))
+            {
+                SetHairCode(numb);
+            }
+        }
     }
 
 
@@ -93,7 +105,7 @@ public class PlayerItems : MonoBehaviour
     {
         // Default for all states, don't forget to update this.
         playerController.defaultJumps = 1;
-        playerController.checkWidth = 0.7f;
+        playerController.checkWidth = 0f;
         rb.gravityScale = 5.0f;
 
         // The World
@@ -115,7 +127,7 @@ public class PlayerItems : MonoBehaviour
         // Wall jump
         else if (code == 4)
         {
-            //playerController.checkWidth = 0.9f; // old school
+            playerController.checkWidth = 0.7f;
         }
         else if (code ==  5)
         {

@@ -1790,6 +1790,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc412edcc1ca60246a930df6b8996dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 0}
   building: {fileID: 0}
-  position: {x: 0, y: 0, z: 0}
+  place: {fileID: 0}
+  made: 0
+  baseLevel: 0
+  lastLevel: 0
