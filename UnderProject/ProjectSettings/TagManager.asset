@@ -24,6 +24,7 @@ TagManager:
   - doorTile
   - upDoor
   - downDoor
+  - Enemy Shock
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - Ground
   - Loot
   - Player
-  - 
+  - Enemy
   - 
   - 
   - 

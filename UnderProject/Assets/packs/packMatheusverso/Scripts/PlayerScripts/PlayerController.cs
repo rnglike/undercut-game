@@ -103,10 +103,18 @@ public class PlayerController : MonoBehaviour
         if (isGrounded == true && rb.velocity.y < 0.5)
         {
             extraJumps = defaultJumps;
+            float aux = rb.velocity.y;
+
+            rb.velocity = new Vector3(rb.velocity.x,aux/10);
+            transform.Find("Poeira").gameObject.active = true;
+
             playerAnimator.SetBool("Grounded", isGrounded);
         } else
         {
             isGrounded = false;
+
+            transform.Find("Poeira").gameObject.active = false;
+
             playerAnimator.SetBool("Grounded", isGrounded);
         }
 
