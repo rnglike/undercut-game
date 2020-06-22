@@ -207,7 +207,7 @@ MonoBehaviour:
   boostTimeSet: 0
   boostTime: 0
   distanceVision: 0
-  initialDistanceVision: 15
+  initialDistanceVision: 5
   enemyGFX: {fileID: 8882532827326279194}
   sprite: {fileID: 0}
   locked: 0

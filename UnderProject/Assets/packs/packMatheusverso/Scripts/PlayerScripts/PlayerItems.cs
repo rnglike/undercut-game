@@ -62,7 +62,7 @@ public class PlayerItems : MonoBehaviour
         {
             int numb = (int)((int)Char.GetNumericValue(c));
 
-            if((numb != -1) && (numb != 1) && (numb != 5))
+            if((numb != -1) && (numb != 1) && (numb != 6))
             {
                 SetHairCode(numb);
             }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2994865445072360678}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: takedmg
   m_TagString: Enemy Terrestre
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2994865445422542793}
   - component: {fileID: 2994865445422542792}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: GrabTrigger
   m_TagString: Enemy Terrestre
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 2994865446212839762}
   - component: {fileID: 2994865446212839754}
   - component: {fileID: 2994865446212839761}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: imao
   m_TagString: Enemy Shock
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ MonoBehaviour:
   boostTimeSet: 100
   boostTime: 0
   distanceVision: 0
-  initialDistanceVision: 15
+  initialDistanceVision: 5
   enemyGFX: {fileID: 2994865446212839753}
   sprite: {fileID: 0}
   locked: 0
@@ -392,7 +392,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.27, y: 0.36}
+  m_Size: {x: 0.27, y: 0.35}
   m_EdgeRadius: 0
 --- !u!95 &2994865446212839761
 Animator:

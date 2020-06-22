@@ -8,6 +8,8 @@ public class BuildingNew : MonoBehaviour
 
     public GameObject level;
     public GameObject levelEnd;
+    
+    public GameObject[] allBombs;
     public Transform[] allDoors;
 
     public int levelAmount;
@@ -17,6 +19,8 @@ public class BuildingNew : MonoBehaviour
     public Texture2D[] maps;
 
     public bool IsDone;
+    public bool IsReady;
+
     public bool makeLevels;
     public bool HaveDoors;
     
@@ -33,6 +37,7 @@ public class BuildingNew : MonoBehaviour
     void Update()
     {
         IsDone = CheckIsDone();
+        IsReady = CheckBombs();
 
         if(makeLevels)
         {
@@ -43,6 +48,7 @@ public class BuildingNew : MonoBehaviour
         if((floorMade == levelToMake) && !HaveDoors)
         {
             allDoors = GetAllDoors();
+            allBombs = GetAllBombs();
             HaveDoors = true;
         }
     }
@@ -69,19 +75,25 @@ public class BuildingNew : MonoBehaviour
 
             thing.position = nextDoor.transform.Find("Door").position;
 
-            StartCoroutine("WaitFor5s");
+            StartCoroutine("Gambiarra");
         }
     }
 
-    IEnumerator WaitFor5s()
+    IEnumerator Gambiarra() //Literally it won't be useful anywhere else.
     {
         yield return new WaitForSeconds(.5f);
         dooring = false;
     }
 
-    Transform[] GetAllDoors()
+    GameObject[] GetAllBombs()  //Gives an all bombs array.
     {
-        Debug.Log("kkk");
+        GameObject[] bombArray = GameObject.FindGameObjectsWithTag("Bomb");
+
+        return bombArray;
+    }
+
+    Transform[] GetAllDoors()   //Gives an all doors array.
+    {
         Transform[] doorArray = new Transform[levelAmount + 1];
 
         foreach(Transform level in this.transform)
@@ -93,16 +105,41 @@ public class BuildingNew : MonoBehaviour
         return doorArray;
     }
 
-    public bool CheckIsDone()
+    public bool CheckIsDone()   //Gives a true when the building is all spawned.
     {
-        if(floorMade < (levelToMake - 1))
+        if(levelToMake != 0)
         {
-            return false;
+            if(floorMade < (levelToMake - 1))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         else
         {
             return true;
         }
+    }
+
+    public bool CheckBombs()    //Gives a true when all bombs are active.
+    {
+        if(allBombs.Length > 0)
+        {
+            foreach(GameObject bomb in allBombs)
+            {
+                if(!bomb.GetComponent<BombTrigger>().activated)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     public void IncrementFloorMade(){floorMade++;}
