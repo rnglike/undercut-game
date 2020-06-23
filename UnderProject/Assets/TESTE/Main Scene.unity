@@ -572,7 +572,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 250}
+  m_AnchoredPosition: {x: -15, y: 250}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &113012159
@@ -1554,6 +1554,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5478784932695059820}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &908986998 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5478784932998489882, guid: 1feac77bc6c74d846938904f2626f772,
+    type: 3}
+  m_PrefabInstance: {fileID: 5478784932695059820}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908986997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4edeb79aef5961746ade5de9a464d426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &943438836
 GameObject:
   m_ObjectHideFlags: 0
@@ -2646,6 +2658,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1451102608}
+  - component: {fileID: 1451102609}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -2676,6 +2689,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1451102609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451102607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e694ccb4c811f41aa47c1751284212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life:
+  - {fileID: 764917996}
+  - {fileID: 85223898}
+  levelCurrent:
+  - {fileID: 1331925600}
+  - {fileID: 139580030}
+  levelAmount:
+  - {fileID: 92661561}
+  building: {fileID: 2027725073}
+  playerLifes: {fileID: 908986998}
 --- !u!1 &1459024183
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,7 +2878,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763608828}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b11cb4e9fa9650b4bb6701901bdc6fac, type: 3}
   m_Name: 
@@ -8039,11 +8074,11 @@ MonoBehaviour:
     type: 3}
   allBombs: []
   allDoors: []
-  levelAmount: 5
+  levelAmount: 1
   levelToMake: 0
   floorMade: 0
   maps:
-  - {fileID: 0}
+  - {fileID: 2800000, guid: 3b12dcd9d7c712d4a964d2a1812f4608, type: 3}
   IsDone: 0
   IsReady: 0
   makeLevels: 1
@@ -8734,6 +8769,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5478784931631510492, guid: 1feac77bc6c74d846938904f2626f772,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478784931992379522, guid: 1feac77bc6c74d846938904f2626f772,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478784932974462029, guid: 1feac77bc6c74d846938904f2626f772,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5478784932998489873, guid: 1feac77bc6c74d846938904f2626f772,
         type: 3}
       propertyPath: checkWidth

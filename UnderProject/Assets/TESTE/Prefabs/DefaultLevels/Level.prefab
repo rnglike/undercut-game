@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 0}
-  ground: {fileID: 7565844106071593514}
-  doors: {fileID: 3938797744054908728}
+  ground: {fileID: 0}
+  doors: {fileID: 0}
   prefabAux: {fileID: 0}
   groundVariants:
   - {fileID: -8651424995529645029, guid: 90f582cdfd5ba9e40bee6ec30bc52163, type: 3}
@@ -163,7 +163,7 @@ MonoBehaviour:
     prefab: {fileID: 2617045990790499960, guid: 57c410bb00506254b80fb600f96226b6,
       type: 3}
   - color: {r: 0, g: 0, b: 1, a: 1}
-    prefab: {fileID: 4924300348114769367, guid: f43b78322410643429f759d5ff8417f6,
+    prefab: {fileID: 1788949684996491966, guid: 072443078a4c47841a45a302061bd040,
       type: 3}
   - color: {r: 1, g: 1, b: 0, a: 1}
     prefab: {fileID: 6219223661609696041, guid: 7bd815ea0953e52449a84d54acdbe385,
@@ -172,7 +172,7 @@ MonoBehaviour:
     prefab: {fileID: 6470712594867682621, guid: e95ec2520183b514ebba015c5c6d9a7a,
       type: 3}
   - color: {r: 0, g: 1, b: 1, a: 1}
-    prefab: {fileID: 1054692889441290998, guid: 9902498e4d4f304408ff6ea277c47b2d,
+    prefab: {fileID: 6867749389498106328, guid: c92e49aabc48145478cc3ecf84f6232a,
       type: 3}
   - color: {r: 0.60784316, g: 0, b: 0, a: 1}
     prefab: {fileID: 2656046250581341665, guid: 95afec20f47eaa848bae3e20ad1a6c7d,
