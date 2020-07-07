@@ -25,6 +25,10 @@ TagManager:
   - upDoor
   - downDoor
   - Enemy Shock
+  - Text
+  - Image
+  - Folder
+  - Base
   layers:
   - Default
   - TransparentFX

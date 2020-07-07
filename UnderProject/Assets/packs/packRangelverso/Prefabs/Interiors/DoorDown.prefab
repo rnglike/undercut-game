@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2656046250581341671}
   - component: {fileID: 2656046250581341670}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: DoorDown
   m_TagString: doorTile
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4727867915318820245}
   - component: {fileID: 3002395861970625754}
   - component: {fileID: 490725234047783587}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Door
   m_TagString: downDoor
   m_Icon: {fileID: 0}

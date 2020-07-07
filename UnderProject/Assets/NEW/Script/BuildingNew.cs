@@ -36,21 +36,42 @@ public class BuildingNew : MonoBehaviour
 
     void Update()
     {
-        IsDone = CheckIsDone();
-        IsReady = CheckBombs();
-
         if(makeLevels)
         {
             makeLevels = false;
-            baseLevel.MakeLevels();
+            if(!IsDone) baseLevel.MakeLevels();
+            else
+            {
+                foreach(Transform level in this.transform)
+                {
+                    if(level.tag != "Base")
+                    {
+                        Destroy(level.gameObject);
+                    }
+                }
+
+                floorMade = 0;
+                baseLevel.made = false;
+                HaveDoors = false;
+                baseLevel.MakeLevels();
+            }
         }
 
-        if((floorMade == levelToMake) && !HaveDoors)
+        if(floorMade == levelToMake)
         {
-            allDoors = GetAllDoors();
-            allBombs = GetAllBombs();
-            HaveDoors = true;
+            if(!HaveDoors)
+            {
+                allDoors = GetAllDoors();
+                allBombs = GetAllBombs();
+                HaveDoors = true;
+            }
+            
+            IsDone = CheckIsDone();
+            IsReady = CheckBombs();
+
         }
+
+        
     }
 
     public void GoToNextDoor(Transform currentDoor,Transform thing)
@@ -105,11 +126,15 @@ public class BuildingNew : MonoBehaviour
         return doorArray;
     }
 
-    public bool CheckIsDone()   //Gives a true when the building is all spawned.
+    public bool CheckIsDone(string mode = "default")   //Gives a true when the building is all spawned.
     {
         if(levelToMake != 0)
         {
-            if(floorMade < (levelToMake - 1))
+            if(mode == "default" && floorMade < levelToMake)
+            {
+                return false;
+            }
+            else if(mode == "forLastRoom" && floorMade < (levelToMake - 1))
             {
                 return false;
             }
