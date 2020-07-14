@@ -29,6 +29,8 @@ TagManager:
   - Image
   - Folder
   - Base
+  - activeDoor
+  - button
   layers:
   - Default
   - TransparentFX
