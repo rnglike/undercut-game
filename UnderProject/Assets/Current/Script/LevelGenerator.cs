@@ -15,12 +15,19 @@ public class LevelGenerator : MonoBehaviour
     public Room room;
     public GameObject ground;
     public GameObject doors;
+    public GameObject bombs;
 
     public GameObject light;
 
     public Sprite[] groundVariants;
 
-    private Dictionary<float,GameObject> doorOrButtonList;
+    private Dictionary<float,List<GameObject>> doorsDic;
+    private Dictionary<float,List<GameObject>> buttonDic;
+
+    private Dictionary<float,List<GameObject>> buttonSDic;
+    private Dictionary<float,List<GameObject>> bombDic;
+
+    public BuildingNew building;
 
     /*
         GROUND VARIANTS IDEAL ORDER:
@@ -44,7 +51,11 @@ public class LevelGenerator : MonoBehaviour
     void Awake()
     {
         room = GetComponent<Room>();
-        doorOrButtonList = new Dictionary<float,GameObject>();
+        doorsDic = new Dictionary<float,List<GameObject>>();
+        buttonDic = new Dictionary<float,List<GameObject>>();
+
+        buttonSDic = new Dictionary<float,List<GameObject>>();
+        bombDic = new Dictionary<float,List<GameObject>>();
     }
 
     void Start()
@@ -79,9 +90,11 @@ public class LevelGenerator : MonoBehaviour
 
         if(pixelColor.a != 0)
         {
+            Color pixelColor0 = new Color(pixelColor.r,pixelColor.g,pixelColor.b,1);
+
             foreach(ColorToPrefab colorToPrefab in colorToPrefabs)
             {
-                if(colorToPrefab.color.Equals(pixelColor))
+                if(colorToPrefab.color.Equals(pixelColor0))
                 {
                     //Actually instantiating the tile.
                     GameObject prefabAux = Instantiate(colorToPrefab.prefab,position,Quaternion.identity,transform);
@@ -98,13 +111,66 @@ public class LevelGenerator : MonoBehaviour
                     }
                     else if((prefabAux.transform.tag == "activeDoor") || (prefabAux.transform.tag == "button"))
                     {
-                        if(!doorOrButtonList.ContainsKey(colorToPrefab.color.a))
+                        if(!doorsDic.ContainsKey(pixelColor.a))
                         {
-                            doorOrButtonList.Add(colorToPrefab.color.a,prefabAux);
+                            List<GameObject> auxList = new List<GameObject>();  //?
+                            List<GameObject> auxList2 = new List<GameObject>(); //?
+                            doorsDic.Add(pixelColor.a,auxList);
+                            buttonDic.Add(pixelColor.a,auxList2);
                         }
-                        else
+
+                        if(prefabAux.transform.tag == "activeDoor")
                         {
-                            prefabAux.GetComponent<ActiveRelation>().target = doorOrButtonList[colorToPrefab.color.a];
+                            doorsDic[pixelColor.a].Add(prefabAux);
+                        }
+                        else if(prefabAux.transform.tag == "button")
+                        {
+                            buttonDic[pixelColor.a].Add(prefabAux);
+                        }
+                    }
+                    else if((prefabAux.transform.tag == "buttonSpecial") || (prefabAux.transform.tag == "Bomb"))
+                    {
+                        if(prefabAux.transform.tag == "Bomb")
+                        {
+                            prefabAux.transform.parent = bombs.transform;
+                        }
+                        
+                        if(!buttonSDic.ContainsKey(pixelColor.a))
+                        {
+                            List<GameObject> auxList = new List<GameObject>();  //?
+                            List<GameObject> auxList2 = new List<GameObject>(); //?
+                            buttonSDic.Add(pixelColor.a,auxList);
+                            bombDic.Add(pixelColor.a,auxList2);
+                        }
+
+                        if(prefabAux.transform.tag == "buttonSpecial")
+                        {
+                            buttonSDic[pixelColor.a].Add(prefabAux);
+                        }
+                        else if(prefabAux.transform.tag == "Bomb")
+                        {
+                            bombDic[pixelColor.a].Add(prefabAux);
+                        }
+                    }
+
+                    if(LastPixel(x,y))
+                    {
+                        foreach(KeyValuePair<float,List<GameObject>> buttonList in buttonDic)
+                        {
+                            foreach(GameObject button in buttonList.Value)
+                            {
+                                button.transform.GetChild(0).GetComponent<Pressurable>().doors = new List<GameObject>();
+                                button.transform.GetChild(0).GetComponent<Pressurable>().doors.AddRange(doorsDic[buttonList.Key]);
+                            }
+                        }
+
+                        foreach(KeyValuePair<float,List<GameObject>> bombList in bombDic)
+                        {
+                            foreach(GameObject bomb in bombList.Value)
+                            {
+                                bomb.transform.GetComponent<BombTrigger>().buttons = new List<GameObject>();
+                                bomb.transform.GetComponent<BombTrigger>().buttons.AddRange(buttonSDic[bombList.Key]);
+                            }
                         }
                     }
                 }
@@ -119,6 +185,17 @@ public class LevelGenerator : MonoBehaviour
                 Instantiate(light,position,Quaternion.identity,transform);
             }
         }
+    }
+
+    bool LastPixel(int x,int y)
+    {
+        if((x == (map.width - 4)) && (y == (map.height - 1)))
+        {
+            Debug.Log("hsgdh");
+            return true;
+        }
+
+        return false;
     }
 
     Sprite SortGroundOut(int x, int y)

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3466511244268652660}
   - component: {fileID: 1819464669687660697}
-  - component: {fileID: 3759312814317588941}
   - component: {fileID: 1394381899843913124}
   m_Layer: 8
   m_Name: Button
@@ -70,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -159782669
-  m_SortingLayer: 4
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8dc84b30ce39fa841ab2ef82e610fef1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -83,22 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &3759312814317588941
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4722404759917466046}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1}
-  m_Size: {x: 3, y: 0.5}
-  m_Direction: 1
 --- !u!50 &1394381899843913124
 Rigidbody2D:
   serializedVersion: 4
@@ -108,7 +91,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4722404759917466046}
   m_BodyType: 2
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -132,6 +115,7 @@ GameObject:
   - component: {fileID: 7078344269303035652}
   - component: {fileID: 1098692722434540747}
   - component: {fileID: 8657703259393367751}
+  - component: {fileID: 6726166078011962655}
   m_Layer: 8
   m_Name: Area
   m_TagString: Untagged
@@ -191,7 +175,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -159782669
-  m_SortingLayer: 4
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 22c71abe4f635c04882fd6057b9edfd7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -217,11 +201,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: wall
-  door: {fileID: 0}
+  otherButtons: []
+  doors: []
   building: {fileID: 0}
   setTime: 0
   velocity: 0.5
   presuring: 0
+  once: 0
+  active: 0
 --- !u!61 &8657703259393367751
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -248,6 +235,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6726166078011962655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6238934519119758860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a31ed6107ec224b9ebbba997934beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  startDuration: 5
+  startCooldown: 1
+  anim: {fileID: 0}
 --- !u!1 &6867749389498106328
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,5 +308,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 008fe992ef10b8f4094ae95854baa379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  done: 0
+  targets: []

@@ -5,7 +5,6 @@ using UnityEngine;
 public class DoorNew : MonoBehaviour
 {
     public bool active;
-    public bool canActivate;
 
     public BombTrigger bomb;
 
@@ -18,6 +17,8 @@ public class DoorNew : MonoBehaviour
     {
         building = GameObject.FindGameObjectWithTag("Building").GetComponent<BuildingNew>();
         currentColor = GetComponent<SpriteRenderer>();
+
+        active = true;
     }
 
     void Update()
@@ -28,10 +29,20 @@ public class DoorNew : MonoBehaviour
             {
                 Transform grannieTransform = transform.parent.parent.parent;
 
-                if(grannieTransform.Find("Bomb(Clone)"))
+                if(grannieTransform.name != "LevelEnd(Clone)")
                 {
-                    bomb = grannieTransform.Find("Bomb(Clone)").GetComponent<BombTrigger>();
-                    canActivate = true;
+                    if(grannieTransform.tag == "Base")
+                    {
+                        active = true;
+                    }
+                    else if(grannieTransform.Find("Bombs"))
+                    {
+                        active = CheckBomb(grannieTransform.Find("Bombs"));
+                    }
+                }
+                else
+                {
+                    active = false;
                 }
             }
 
@@ -44,28 +55,24 @@ public class DoorNew : MonoBehaviour
                 currentColor.color = infoColors[0];
             }
         }
+    }
 
-        if(canActivate)
+    bool CheckBomb(Transform thing)
+    {
+        foreach (Transform bomb in thing)
         {
-            if(bomb.activated)
-            {
-                active = true;
-            }
-            else
-            {
-                active = false;
-            }
+            if(!bomb.GetComponent<BombTrigger>().activated) return false;
         }
-        else
-        {
-            active = true;
-        }
+
+        return true;
     }
 
     void OnTriggerStay2D(Collider2D thing)
     {
         if(thing.tag == "Player")
         {
+            thing.GetComponent<PlayerController>().uuuuuuuuuuuuuuh = true;
+
             if(Input.GetButtonDown("Interact") && active)
             {
                 building.GoToNextDoor(this.transform,thing.transform);

@@ -44,15 +44,31 @@ public class PlayerAttack : MonoBehaviour
         playerLock = GetComponent<PlayerController>().getPlayerLock();
 
         // Attack !
-        if (Input.GetButtonDown("Hit") && timeBtwAttack <= 0 && playerLock == false)
+        if (Input.GetButtonDown("Hit") && playerLock == false && timeBtwAttack <= 0)
         {
-            playerAnimator.SetTrigger("Attack");
-            //Attack delay
-            StartCoroutine(Wait()); 
+            float temp_mi = transform.GetComponent<PlayerController>().moveInput;
+            float temp_dir;
+            if((temp_mi) != 0)
+            {
+                temp_dir = (temp_mi/Mathf.Abs(temp_mi));
+            }
+            else
+            {
+                temp_dir = 0;
+            }
 
-        } else 
+            playerAnimator.SetTrigger("Attack");
+            
+            transform.GetComponent<PlayerController>().rb.velocity = new Vector3(temp_dir * 20,transform.GetComponent<PlayerController>().rb.velocity.y);
+            
+            // Attack delay
+            timeBtwAttack = attackDelay*(Time.deltaTime*60);
+            // StartCoroutine(Wait());
+            Attack();
+        }
+        else 
         {
-            timeBtwAttack = timeBtwAttack - Time.deltaTime;
+            timeBtwAttack -= Time.deltaTime;
         }
     }
 
@@ -80,13 +96,14 @@ public class PlayerAttack : MonoBehaviour
         {
             for (int i = 0; i < enemiesToHit.Length; i++)
             {
-                if(enemiesToHit[i].gameObject.layer == 8)
+                if(enemiesToHit[i].gameObject.layer == 12 && GetComponent<PlayerItems>().GetHairCode() == 3)
                 {
                     enemiesToHit[i].GetComponent<Breakable>().TakeDamage();
                 }
                 else
                 {
-                    enemiesToHit[i].GetComponent<EnemyHealth>().TakeDamage(damage);
+                    if(enemiesToHit[i].name == "calder(Clone)") enemiesToHit[i].GetComponent<EnemyHealth2>().TakeDamage(damage);
+                    if(enemiesToHit[i].name == "bomb(Clone)" || enemiesToHit[i].name == "imao(Clone)") enemiesToHit[i].GetComponent<EnemyHealth>().TakeDamage(damage);
                 }
             }
         }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Extras : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class Extras : MonoBehaviour
 	private Room room;
 	private Building building;
 	private Interface ui;
+	private brain brain;
+	private GameObject player;
 
 	//Cheat Variables
 	public string cheatVariable;							//VARIAVEL QUE GUARDA A PALAVRA CHAVE
@@ -49,6 +52,8 @@ public class Extras : MonoBehaviour
 
 		// currentCheatLetter = new Dictionary<string, int>();
 		// ui = GetComponent<Interface>();
+
+		player = GameObject.FindWithTag("Player");
 	}
 
 	void Update()
@@ -66,9 +71,19 @@ public class Extras : MonoBehaviour
 		// // 	ShowFps();
 		// // }
 
-		if(Cheat("nicole")) //need update
+		if(Cheat("nicole"))
 		{
-			Debug.Log("Konami CODE");
+			GetComponent<brain>().ui.screens[0].transform.Find("Byte").Find("info").GetComponent<TextMeshProUGUI>().text = "<3";
+		}
+
+		if(Cheat("ganha"))
+		{
+			GetComponent<brain>().cheatWon = true;
+		}
+
+		if(Cheat("cleiton"))
+		{
+			player.GetComponent<PlayerItems>().cheat = !player.GetComponent<PlayerItems>().cheat;
 		}
 	}
 
@@ -215,7 +230,7 @@ public class Extras : MonoBehaviour
 						{
 							Debug.Log("Cheat Found! [" + currentCheatLetter[cheat].ToString() + "/" + cheat.Length.ToString() + "]");
 						}
-						cheatDelay = 2 * (Time.deltaTime * 10);								//Now you have some time to press the next correct char.
+						cheatDelay = 4 * (Time.deltaTime * 10);								//Now you have some time to press the next correct char.
 					}
 					else															//...AND THAT CHAR ISN'T PART OF A CHEAT. [X]
 					{

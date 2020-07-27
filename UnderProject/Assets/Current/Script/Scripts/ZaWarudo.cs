@@ -11,6 +11,7 @@ public class ZaWarudo : MonoBehaviour
         * Momentum of physic *
     */
 
+    public string type;
 
     // Control variables
     PointInTime freeze;
@@ -28,10 +29,13 @@ public class ZaWarudo : MonoBehaviour
     //Stop the animation
     public Animator anim;
 
+    public brain brain;
+
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        if(type == "obj") rb = GetComponent<Rigidbody2D>();
+        if(type == "brain") brain = GetComponent<brain>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -44,6 +48,11 @@ public class ZaWarudo : MonoBehaviour
 
             // Call the time stopper
             if (Input.GetKeyDown("z") && isTimeStopped == false && cooldown <= 0) {
+                if(type == "brain")
+                {
+                    brain.timerPaused = true;
+                    brain.theme.pitch = .5f;
+                }
                 StopTheTime();
             }
         }
@@ -51,6 +60,11 @@ public class ZaWarudo : MonoBehaviour
             // Call freeze in each frame until duration be equals 0 or less
             Freeze();
             if (duration <= 0) {
+                if(type == "brain")
+                {
+                    brain.timerPaused = false;
+                    brain.theme.pitch = 1f;
+                }
                 ReturnTheTime();
             }
         }
@@ -69,10 +83,12 @@ public class ZaWarudo : MonoBehaviour
 
     // It will reload the last object momentum before the time stop
     private void Freeze() {
-        transform.position = freeze.position;
-        transform.rotation = freeze.rotation;
-        rb.velocity = new Vector2(0, 0);
-        rb.velocity = freeze.rbVelocity;
+        if(type == "obj")
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+            rb.velocity = new Vector2(0, 0);
+            rb.velocity = freeze.rbVelocity;
+        }
         
         duration -= Time.deltaTime;
     }
@@ -80,25 +96,37 @@ public class ZaWarudo : MonoBehaviour
 
     // Save the object momentum
     private void Record() {
-        freeze = new PointInTime(transform.position, transform.rotation, rb.velocity);
+        if(type == "obj")
+        {
+            freeze = new PointInTime(transform.position, transform.rotation, rb.velocity);
+        }
     }
 
 
     // Set the variables to the time stop
     private void StopTheTime() {
+        if(type == "obj")
+        {
+            rb.isKinematic = true;
+            anim.speed = 0f;
+        }
+
         duration = startDuration;
         isTimeStopped = true;
-        rb.isKinematic = true;
-        anim.speed = 0f;
     }
 
 
     // Set the variables to return the time
     private void ReturnTheTime() {
+        if(type == "obj")
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            rb.isKinematic = false;
+            anim.speed = 1f;
+        }
+
         isTimeStopped = false;
-        rb.isKinematic = false;
         cooldown = startCooldown;
-        anim.speed = 1f;
     }
 
 

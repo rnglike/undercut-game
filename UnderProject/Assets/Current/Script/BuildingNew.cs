@@ -9,7 +9,8 @@ public class BuildingNew : MonoBehaviour
     public GameObject level;
     public GameObject levelEnd;
     
-    public GameObject[] allBombs;
+    public List<GameObject> allLevels;
+    public Transform[] allBombs;
     public Transform[] allDoors;
 
     public int levelToMake;
@@ -26,9 +27,12 @@ public class BuildingNew : MonoBehaviour
     public int currentRoom;
     public bool dooring;
 
+    public bool won;
+
     void Start()
     {
         baseLevel = transform.GetChild(0).GetComponent<Room>();
+        allLevels = new List<GameObject>();
 
         MakeLevels();
     }
@@ -55,13 +59,28 @@ public class BuildingNew : MonoBehaviour
         }
     }
 
-    public void Reset()
+    void FixedUpdate()
     {
-        currentRoom = 0;
-        makeLevels = true;
+        foreach(GameObject level in allLevels)
+        {
+            if((allLevels.IndexOf(level) == currentRoom - 1) || (allLevels.IndexOf(level) == currentRoom - 2) || (allLevels.IndexOf(level) == currentRoom))
+            {
+                level.SetActive(true);
+            }
+            else
+            {
+                level.SetActive(false);
+            }
+        }
     }
 
-    void MakeLevels()
+    public void Reset()
+    {        
+        currentRoom = 0;
+        baseLevel.MakeLevels();
+    }
+
+    public void MakeLevels()
     {
         foreach(Transform level in this.transform)
         {
@@ -71,10 +90,13 @@ public class BuildingNew : MonoBehaviour
             }
         }
 
+        allLevels = new List<GameObject>();
+        
         floorMade = 0;
+        currentRoom = 0;
         baseLevel.made = false;
         HaveDoors = false;
-        baseLevel.MakeLevels();
+        baseLevel.MakeLevels();;
     }
 
     public void GoToNextDoor(Transform currentDoor,Transform thing)
@@ -109,11 +131,24 @@ public class BuildingNew : MonoBehaviour
         dooring = false;
     }
 
-    GameObject[] GetAllBombs()  //Gives an all bombs array.
+    Transform[] GetAllBombs()  //Gives an all bombs array.
     {
-        GameObject[] bombArray = GameObject.FindGameObjectsWithTag("Bomb");
+        List<Transform> bombArray = new List<Transform>();
 
-        return bombArray;
+        foreach(Transform level in this.transform)
+        {
+            if(level.tag != "Base")
+            {
+                Transform thisBombs = level.Find("Bombs");
+                
+                foreach(Transform thisBomb in thisBombs)
+                {
+                    bombArray.Add(thisBomb);
+                }
+            }
+        }
+
+        return bombArray.ToArray();
     }
 
     Transform[] GetAllDoors()   //Gives an all doors array.
@@ -156,9 +191,9 @@ public class BuildingNew : MonoBehaviour
     {
         if(allBombs.Length > 0)
         {
-            foreach(GameObject bomb in allBombs)
+            foreach(Transform bomb in allBombs)
             {
-                if(!bomb.GetComponent<BombTrigger>().activated)
+                if(!bomb.gameObject.GetComponent<BombTrigger>().activated)
                 {
                     return false;
                 }
@@ -168,6 +203,14 @@ public class BuildingNew : MonoBehaviour
         }
 
         return false;
+    }
+
+    void OnTriggerEnter2D(Collider2D any)
+    {
+        if(any.tag == "Player")
+        {
+            won = true;
+        }
     }
 
     public void IncrementFloorMade(){floorMade++;}

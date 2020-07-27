@@ -20,6 +20,8 @@ public class PlayerItems : MonoBehaviour
     //Não jogue o item fora
     public bool dropDelay;
 
+    public bool cheat;
+
     /* Tabela
         0 - Default
         1 - zawarudo
@@ -46,25 +48,28 @@ public class PlayerItems : MonoBehaviour
     void Update()
     {
         // Drop the items
-        if (Input.GetKey("n") && weaponCode > 0)
-        {
-            dropper.GetComponent<ItemDrop>().Dropper(weaponCode, false);
-            SetWeaponCode(0);
-        }
-        if (Input.GetKey(KeyCode.DownArrow) && hairCode > 0 && !dropDelay)
-        {
-            dropper.GetComponent<ItemDrop>().Dropper(hairCode, true);
-            SetHairCode(0);
-        }
+        // if (Input.GetKey("n") && weaponCode > 0)
+        // {
+        //     dropper.GetComponent<ItemDrop>().Dropper(weaponCode, false);
+        //     SetWeaponCode(0);
+        // }
+        // if (Input.GetKey(KeyCode.DownArrow) && hairCode > 0 && !dropDelay)
+        // {
+        //     dropper.GetComponent<ItemDrop>().Dropper(hairCode, true);
+        //     SetHairCode(0);
+        // }
 
-        //LEVEL EDITOR ONLY
-        foreach(char c in Input.inputString)
+        //CHEATS, YEAH!
+        if(cheat)
         {
-            int numb = (int)((int)Char.GetNumericValue(c));
-
-            if((numb != -1) && (numb != 1) && (numb != 6))
+            foreach(char c in Input.inputString)
             {
-                SetHairCode(numb);
+                int numb = (int)((int)Char.GetNumericValue(c));
+
+                if((numb != -1) && (numb != 6))
+                {
+                    SetHairCode(numb);
+                }
             }
         }
     }

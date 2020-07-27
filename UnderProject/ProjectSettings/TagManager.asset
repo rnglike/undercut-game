@@ -31,6 +31,9 @@ TagManager:
   - Base
   - activeDoor
   - button
+  - Doguinho
+  - Enemy
+  - buttonSpecial
   layers:
   - Default
   - TransparentFX
@@ -44,7 +47,7 @@ TagManager:
   - Loot
   - Player
   - Enemy
-  - 
+  - GroundThatBreaks
   - 
   - 
   - 
@@ -71,14 +74,29 @@ TagManager:
   - name: Sky
     uniqueID: 2967993093
     locked: 0
+  - name: Back
+    uniqueID: 945664671
+    locked: 0
+  - name: Middle
+    uniqueID: 3912016241
+    locked: 0
+  - name: OutLevel2
+    uniqueID: 881660637
+    locked: 0
+  - name: OutLevel
+    uniqueID: 4101955591
+    locked: 0
   - name: Things
     uniqueID: 2399242165
     locked: 0
-  - name: Shadow
-    uniqueID: 601198647
-    locked: 0
   - name: Level
     uniqueID: 4135184627
+    locked: 0
+  - name: Enemy
+    uniqueID: 2450143077
+    locked: 0
+  - name: Front
+    uniqueID: 1911431887
     locked: 0
   - name: First
     uniqueID: 4153396341

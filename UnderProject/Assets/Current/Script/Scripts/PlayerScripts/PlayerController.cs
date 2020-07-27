@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool uuuuuuuuuuuuuuh;
+    public GameObject hhihihihi;    //I'm tired dude (01:24 of a freaking monday and I can't even "quit" and go home cause I've already quitted like more than twice and I'm also literally at home... Let's get back at work)
+
+    public AudioSource walkingSound;
     // Tempo do jogador se libertar
     public float startFreeLockTime;
 
@@ -11,9 +15,11 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jumpForce;
     public float moveInput;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     public bool facingRight = true;
     public bool playerMovementLock;
+    public bool getVel;
+    public bool walking;
 
     // Positioning Variables
     public bool withBuilding;
@@ -47,6 +53,9 @@ public class PlayerController : MonoBehaviour
 
     private float rbgs;
 
+    public int[] killCount;
+    public int[] deathCount;
+
     void Awake()
     {
         // Assigning variables
@@ -58,20 +67,33 @@ public class PlayerController : MonoBehaviour
         {
             building = GameObject.FindGameObjectWithTag("Building").GetComponent<Building>();
         }
+
+        killCount = new int[4];
+        deathCount = new int[4];
     }
 
     
     void FixedUpdate()
     {
+        if(uuuuuuuuuuuuuuh)
+        {
+            uuuuuuuuuuuuuuh = false;
+            hhihihihi.SetActive(true);
+        }
+        else
+        {
+            hhihihihi.SetActive(false);
+        }
+
         // Horizontal movimentation
         moveInput = Input.GetAxis("Horizontal"); // Raw? (no aceleration)
 
-        if (playerMovementLock == false)
+        if(!playerMovementLock && !this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
         }
 
-        if(moveInput == 0f || playerMovementLock)
+        if(playerMovementLock)
         {
             rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         }
@@ -99,7 +121,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
         // Jump control
         if (isGrounded == true && rb.velocity.y < 0.5)
         {
@@ -133,11 +154,23 @@ public class PlayerController : MonoBehaviour
         // Running animation
         else if (Mathf.Abs(moveInput) > Mathf.Epsilon && playerMovementLock == false)
         {
+            if(!isGrounded)
+            {
+                walking = false;
+                walkingSound.Stop();
+            }
+            if(!walking)
+            {
+                walking = true;
+                walkingSound.Play();
+            }
             playerAnimator.SetInteger("AnimState", 2);
         }
         // IDLE animation
         else
         {
+            walking = false;
+            walkingSound.Stop();
             playerAnimator.SetInteger("AnimState", 0);
         }
 
@@ -158,7 +191,6 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = rbgs;
         }
     }
-
 
     // Flip the game object
     private void Flip()
@@ -258,6 +290,17 @@ public class PlayerController : MonoBehaviour
     {
         GetComponent<Playerlifes>().ResetLifes();
         //Resetar perucas.
-        transform.position = respawn.position;
+        float aux = respawn.position.y + 4;
+        transform.position = new Vector3(respawn.position.x,aux,respawn.position.z);
+    }
+
+    public int SumKills()
+    {
+        int aux = 0;
+        foreach (int kill in killCount)
+        {
+            aux += kill;
+        }
+        return aux;
     }
 }

@@ -18,6 +18,7 @@ public class BaseEnemy : MonoBehaviour
      * ----------------------------------------------------------------------------------------
     */
     // Movimentation variables
+    public string type;
     public GameObject player;
     public float standardSpeed;
     private float currentSpeed;
@@ -25,6 +26,9 @@ public class BaseEnemy : MonoBehaviour
     private Vector2 direction;
     // Range of vision
     public float visionRange;
+
+    public ebm ebm;
+    public bool enemyNearby;
 
 
     /*
@@ -64,7 +68,7 @@ public class BaseEnemy : MonoBehaviour
         {
             GroundSeeker();
 
-            AttackTimer("circle");
+            AttackTimer();
 
             timeBtwAtk -= Time.deltaTime;
         }
@@ -99,8 +103,15 @@ public class BaseEnemy : MonoBehaviour
         direction = (Vector2)(player.transform.position - transform.position);
         if (direction.magnitude <= visionRange)
         {
+            ebm.active = false;
+            if(type == "caldeirito") ps.PlayParticle();
             direction = direction.normalized;
             rb.velocity = new Vector2(direction.x * currentSpeed, rb.velocity.y);
+        }
+        else
+        {
+            ebm.active = true;
+            if(type == "caldeirito") ps.StopParticle();
         }
     }
 
@@ -132,7 +143,6 @@ public class BaseEnemy : MonoBehaviour
         Collider2D[] enemiesToHit = Physics2D.OverlapCircleAll((Vector2)transform.position, circleAttackRadius, whatIsEnemy);
         if (enemiesToHit.Length > 0)
         {
-            ps.PlayParticle();
             for (int i = 0; i < enemiesToHit.Length; i++)
             {
                 enemiesToHit[i].GetComponent<Playerlifes>().PlayerTakeDamage(dmg);
@@ -140,7 +150,12 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    protected void AttackTimer(string mode)
+    protected void FireAttack(int dmg)
+    {
+        player.GetComponent<Playerlifes>().PlayerTakeDamage(dmg);
+    }
+
+    protected void AttackTimer(string mode = "any")
     {
         if (timeBtwAtk <= 0)
         {
@@ -149,6 +164,38 @@ public class BaseEnemy : MonoBehaviour
                 timeBtwAtk = startTimeBtwAtkCircle;
                 CircleAttack(damage);
             }
+        }
+
+        if(enemyNearby)
+        {
+            if (timeBtwAtk <= 0)
+            {
+                if(mode == "any")
+                {
+                    FireAttack(damage);
+                    timeBtwAtk = 20;
+                }
+            }
+        }
+        else
+        {
+            timeBtwAtk = 0;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D any)
+    {
+        if(any.tag == "Player")
+        {
+            enemyNearby = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D any)
+    {
+        if(any.tag == "Player")
+        {
+            enemyNearby = false;
         }
     }
 

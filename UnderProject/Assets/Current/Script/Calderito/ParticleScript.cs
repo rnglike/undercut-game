@@ -21,4 +21,9 @@ public class ParticleScript : MonoBehaviour
     {
         ps.Play();
     }
+    
+    public void StopParticle()
+    {
+        ps.Stop();
+    }
 }

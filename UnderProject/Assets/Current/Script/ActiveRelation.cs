@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class ActiveRelation : MonoBehaviour
 {
-    public GameObject target;
+    public List<GameObject> targets;
 
     void Start()
     {
-        if(target != null)
+        foreach(GameObject target in targets)
         {
             if(transform.tag == "button")
             {
-                this.transform.Find("Area").GetComponent<Pressurable>().door = target.gameObject;
+                this.transform.Find("Area").GetComponent<Pressurable>().doors.Add(target);
             }
             else
             {
-                target.transform.Find("Area").GetComponent<Pressurable>().door = this.gameObject;
+                target.transform.Find("Area").GetComponent<Pressurable>().doors.Add(this.gameObject);
             }
         }
     }

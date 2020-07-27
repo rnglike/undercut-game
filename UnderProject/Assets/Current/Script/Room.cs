@@ -29,14 +29,18 @@ public class Room : MonoBehaviour
 	{
 		if(!made)
 		{
+			GameObject aux;
+
 			if(!building.CheckIsDone("forLastRoom"))
 			{
-				Instantiate(building.level,place.position,Quaternion.identity,transform.parent);
+				aux = Instantiate(building.level,place.position,Quaternion.identity,transform.parent);
 			}
 			else
 			{
-				Instantiate(building.levelEnd,place.position,Quaternion.identity,transform.parent);
+				aux = Instantiate(building.levelEnd,place.position,Quaternion.identity,transform.parent);
 			}
+
+			building.allLevels.Add(aux);
 			
 			building.IncrementFloorMade();
 
@@ -47,6 +51,7 @@ public class Room : MonoBehaviour
 	public Texture2D ChooseMap(Texture2D map)
 	{
 		Texture2D[] maps = building.maps;
+
 		int rand = Random.Range(0,maps.Length);
 
 		return maps[rand];

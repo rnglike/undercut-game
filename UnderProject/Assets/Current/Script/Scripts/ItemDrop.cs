@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemDrop : MonoBehaviour
 {
     // Item Lists, position 0 is the default (without item)
-    public GameObject[] hairList;
+    public GameObject hair;
     public GameObject[] weaponList;
     public Transform dropperTransform;
 
@@ -15,7 +15,8 @@ public class ItemDrop : MonoBehaviour
     {
         if (isHair == true)
         {
-            Instantiate(hairList[itemCode], dropperTransform.position, dropperTransform.rotation);
+            GameObject hairX = Instantiate(hair, dropperTransform.position, dropperTransform.rotation);
+            hairX.transform.Find("peruca").GetComponent<LootBox>().item = itemCode;
         }
         else
         {

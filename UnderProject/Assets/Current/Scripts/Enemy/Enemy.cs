@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int enemyIndex;
+
     // Inimigo Reconhecer/Dar dano no Player
     public LayerMask whatIsMyEnemy;
     private float cooldown;
@@ -59,14 +61,19 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer sprite;
     public bool locked;
     public bool search;
+    public bool explode;
+    public bool exploded;
 
     public Animator anim;
 
     // Efeitos Sonoros
     private AudioSource source;
-    public GameObject explosionSound;
-    private AudioSource explosionAudio;
+    public AudioClip explosionAudio;
     public AudioClip shockAudio;
+
+    public ebm ebm;
+
+    public ParticleScript boom;
 
 
     //private Animator anim; (será usado depois, para animação)
@@ -85,7 +92,6 @@ public class Enemy : MonoBehaviour
         //Audio
         source = GetComponent<AudioSource>();
         //ExplosionSound
-        explosionAudio = explosionSound.GetComponent<AudioSource>();
     }
 
     public void LockedFalse()
@@ -136,17 +142,38 @@ public class Enemy : MonoBehaviour
         // Como não animação, isso serve para ver para virar as sprites dependendo a direção do inimigo (direita ou esquerda). Aumenta ou diminue a sprite tambem, se a escala for diferente do base
         if (rb.velocity.x >= 0.01f)
         {            
-            enemyGFX.localScale = new Vector3(-currentSize.x, currentSize.y, currentSize.z);
             anim.SetBool("isRunning", true);
         }
         else if (rb.velocity.x <= -0.01f)
         {           
-            enemyGFX.localScale = new Vector3(currentSize.x, currentSize.y, currentSize.z);
             anim.SetBool("isRunning", true);
         }
         else
         {
             anim.SetBool("isRunning", false);
+        }
+
+        if(explode)
+        {    
+            if (Vector2.Distance(rb.position, player.position) <= ExplosionArea)
+            {
+                if(player.GetComponent<Playerlifes>().lifes - enemyDamage*3 <= 0) player.GetComponent<PlayerController>().deathCount[enemyIndex] += 1;
+                player.GetComponent<Playerlifes>().PlayerTakeDamage(enemyDamage*3);
+            }
+            else if (Vector2.Distance(rb.position, player.position) <= ExplosionPushArea)
+            {
+                auxx.y = auxx.y + 2;
+                Vector2 aux = (auxx - (Vector2)transform.position);
+                Vector2 direction = aux / aux.magnitude;
+                playerRb.velocity = playerRb.velocity + (direction * pushForce);
+                player.GetComponent<Playerlifes>().PlayerTakeDamage(enemyDamage);
+                if(player.GetComponent<Playerlifes>().lifes - enemyDamage <= 0) player.GetComponent<PlayerController>().deathCount[enemyIndex] += 1;
+                Debug.Log("PlayerMandadoPraEstratosfera");
+            }   
+            if(!boom.GetComponent<ParticleSystem>().IsAlive())
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -157,11 +184,16 @@ public class Enemy : MonoBehaviour
             // Pega a distância do Rigidbody do inimigo e o Transform do jogador, e compara com o Campo de Visão do inimigo.          
             if (Vector2.Distance(rb.position, player.position) <= distanceVision)
             {
+                ebm.active = false;
                 // move = Vector2.MoveTowards(transformE.position, player.position, speed * Time.deltaTime);            //Possibilidade de usar o Transform para movimentação, mas não recomendado.
                 // Faz o inimigo se mover para onde o jogador está.
                 move = ((Vector2)player.position - rb.position);
                 move = move / move.magnitude;
                 rb.velocity = new Vector2(move.x * speed, rb.velocity.y);
+            }
+            else
+            {
+                ebm.active = true;
             }
         }
     }
@@ -183,7 +215,7 @@ public class Enemy : MonoBehaviour
                 }
             }
             
-            if (EnemyCanExplode == true)
+            if (EnemyCanExplode == true && !explode)
             {
                 speed = 0;
                 StartCoroutine(SetExplosionTime());
@@ -195,23 +227,17 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(startExplosionTime);
 
-        if (Vector2.Distance(rb.position, player.position) <= ExplosionArea)
+        GetComponent<Enemy>().sprite.color = new Color(255,255,255,255);
+        boom.PlayParticle();
+        if(!exploded)
         {
-            player.GetComponent<PlayerController>().DestroyPlayer();
-            
+            source.clip = explosionAudio;
+            source.Play();
+            exploded = true;
         }
-        else if (Vector2.Distance(rb.position, player.position) <= ExplosionPushArea)
-        {
-            auxx.y = auxx.y + 2;
-            Vector2 aux = (auxx - (Vector2)transform.position);
-            Vector2 direction = aux / aux.magnitude;
-            playerRb.velocity = playerRb.velocity + (direction * pushForce);
-            player.GetComponent<Playerlifes>().PlayerTakeDamage(enemyDamage);
-            Debug.Log("PlayerMandadoPraEstratosfera");
-            
-        }        
-        Destroy(gameObject);
-        // explosionAudio.Play();
+        GetComponent<Enemy>().sprite.enabled = false;
+
+        explode = true;
     }
 
     IEnumerator SetShockTime()
@@ -219,6 +245,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(TimeToGetShocked);
         if (locked == true)
         {
+            if(player.GetComponent<Playerlifes>().lifes - enemyDamage <= 0) player.GetComponent<PlayerController>().deathCount[enemyIndex] += 1;
             player.GetComponent<Playerlifes>().PlayerTakeDamage(enemyDamage);
             source.clip = shockAudio;
             source.Play();

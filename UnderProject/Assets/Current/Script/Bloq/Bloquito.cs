@@ -17,6 +17,7 @@ public class Bloquito : BaseEnemy
     private bool touchingGround;
     public LayerMask whatIsGround;
     public float wallCheckDistance;
+    public Vector3 auxScale;
 
     private SpriteRenderer sr;
 
@@ -35,6 +36,8 @@ public class Bloquito : BaseEnemy
         rb2d = GetComponent<Rigidbody2D>();
 
         sr = GetComponentInChildren<SpriteRenderer>();
+
+        auxScale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -61,10 +64,10 @@ public class Bloquito : BaseEnemy
             StartCoroutine(WaitDown());
         }
 
-        if(touchingGround && mode != 2)
+        if(touchingGround && mode == 2)
         {
-        	transform.localScale += new Vector3(1,1,0);
-        	rb2d.velocity = Vector2.up * 10;
+        	transform.localScale = auxScale;
+        	rb2d.velocity = Vector2.up * 2;
         	legs.SetActive(true);
         	mode = 2;
         }
@@ -115,12 +118,14 @@ public class Bloquito : BaseEnemy
     {
         anim.SetTrigger("GetDown");
         //StartCoroutine(WaitLegs());
+        mode = 2;
     }
 
     IEnumerator WaitDown()
     {
     	yield return new WaitForSeconds(1f);
-    	transform.localScale -= new Vector3(1,1,0);
+    	transform.localScale = new Vector3(auxScale.x/1.25f,auxScale.y/1.25f,auxScale.z);
+        yield return new WaitForSeconds(1f);
     	rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
     	CircleAttack(damage);
     	rb2d.velocity = Vector2.up * 15;

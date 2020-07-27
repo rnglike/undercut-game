@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-
+    public int enemyIndex;
     public int enemyHealth;
 
     private Transform player;
@@ -27,6 +27,7 @@ public class EnemyHealth : MonoBehaviour
     private AudioSource takeDmg;
 
     private Pickable pickable;
+    public ParticleScript puft;
 
     void Start()
     {
@@ -42,15 +43,25 @@ public class EnemyHealth : MonoBehaviour
 
     void Update()
     {
-        if (enemyHealth <= 0 && isDead == false)
+        if (enemyHealth <= 0)
         {
-           
-            isDead = true;
-            //animator.SetBool("Quebrei", true);  (será usado depois)
-            //source.Play();  (será usado depois)
-            GetComponent<Enemy>().sprite.color = new Color(100,100,100,GetComponent<Enemy>().sprite.color.a);
-            Destroy(GetComponent<Enemy>());
+            if(isDead == false)
+            {
+                isDead = true;
 
+                //animator.SetBool("Quebrei", true);  (será usado depois)
+                //source.Play();  (será usado depois)
+                GetComponent<Enemy>().sprite.color = new Color(255,255,255,255);
+                puft.PlayParticle();
+                Destroy(GetComponent<SpriteRenderer>());
+                Destroy(GetComponent<BoxCollider2D>());
+            }
+
+            if(!puft.GetComponent<ParticleSystem>().IsAlive())
+            {
+                player.GetComponent<PlayerController>().killCount[enemyIndex] += 1;
+                Destroy(gameObject);
+            }
         }
 
         // Literalmente mata o inimigo se o hp dele ficar zero.
@@ -98,7 +109,6 @@ public class EnemyHealth : MonoBehaviour
     // Controla o efeito do ataque do Player.
     public void TakeDamage(int damage)
     {
-
         enemyHealth -= damage;
 
         transform.GetComponent<Rigidbody2D>().AddForce((new Vector2((8*(player.localScale.x/Mathf.Abs(player.localScale.x))),8)),ForceMode2D.Impulse);
