@@ -460,6 +460,11 @@ public class brain : MonoBehaviour
             player.Reset();
             building.Reset();
         }
+
+        building.won = false;
+
+        timer = 0;
+        once = true;
     }
 
     IEnumerator WaitForLaunch()

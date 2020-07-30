@@ -332,7 +332,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: matheus moura
+  m_text: mateus moura
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c34cc5b7cc85d1441a8cbecd967fd331, type: 2}
   m_sharedMaterial: {fileID: 4639797475231118479, guid: c34cc5b7cc85d1441a8cbecd967fd331,
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 14692969}
-    characterCount: 13
+    characterCount: 12
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -522,7 +522,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: isaac
+  m_text: isaac souza
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c34cc5b7cc85d1441a8cbecd967fd331, type: 2}
   m_sharedMaterial: {fileID: 4639797475231118479, guid: c34cc5b7cc85d1441a8cbecd967fd331,
@@ -592,7 +592,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 41719970}
-    characterCount: 13
+    characterCount: 11
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -4037,7 +4037,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &595941182
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4928,7 +4928,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: petropolis
+  m_text: eduardo petropolis
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c34cc5b7cc85d1441a8cbecd967fd331, type: 2}
   m_sharedMaterial: {fileID: 4639797475231118479, guid: c34cc5b7cc85d1441a8cbecd967fd331,
@@ -4998,7 +4998,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 741493944}
-    characterCount: 13
+    characterCount: 18
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -7235,7 +7235,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ferrari
+  m_text: bruno ferrari
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c34cc5b7cc85d1441a8cbecd967fd331, type: 2}
   m_sharedMaterial: {fileID: 4639797475231118479, guid: c34cc5b7cc85d1441a8cbecd967fd331,
@@ -11364,7 +11364,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1654037092}
-    characterCount: 13
+    characterCount: 15
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -17167,7 +17167,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: uc.7.24
+  m_text: uc.7.29
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -23058,7 +23058,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1902177230}
-    characterCount: 13
+    characterCount: 14
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
